@@ -5,7 +5,8 @@ name:"WORDS FM",
 frequency:"98.7 FM",
 description:"5000 MOST USED WORDS",
 file:"data/5000_words_channel.csv",
-color:"#38bdf8"
+color:"#38bdf8",
+background:false
 },
 
 {
@@ -13,7 +14,8 @@ name:"LISTEN FM",
 frequency:"101.2 FM",
 description:"LISTENING TRAINER",
 file:"data/listen_channel.csv",
-color:"#a855f7"
+color:"#a855f7",
+background:true
 }
 
 ];
@@ -29,6 +31,8 @@ let current = null;
 let playing = false;
 
 let restartTimeout = null;
+
+let backgroundAudio = null;
 
 
 
@@ -58,6 +62,7 @@ const translation = document.getElementById("translation");
 const level = document.getElementById("level");
 
 const speedValue = document.getElementById("speedValue");
+
 
 
 
@@ -109,7 +114,8 @@ de:parts[1]
 
 
 
-// Kanal aktualisieren
+
+// Kanal wechseln
 
 async function updateChannel(){
 
@@ -170,7 +176,89 @@ radio.classList.remove("tuning");
 
 
 
+// Hintergrundgeräusch
+
+function startBackgroundSound(){
+
+
+const channel = channels[channelIndex];
+
+
+
+if(!channel.background){
+
+return;
+
+}
+
+
+
+const sounds=[
+
+"data/train.mp3",
+
+"data/city.mp3"
+
+];
+
+
+
+const selected =
+sounds[Math.floor(Math.random()*sounds.length)];
+
+
+
+backgroundAudio = new Audio(selected);
+
+
+
+backgroundAudio.loop = true;
+
+
+backgroundAudio.volume = 0.15;
+
+
+
+backgroundAudio.play();
+
+
+}
+
+
+
+
+
+
+function stopBackgroundSound(){
+
+
+if(backgroundAudio){
+
+
+backgroundAudio.pause();
+
+
+backgroundAudio.currentTime=0;
+
+
+backgroundAudio=null;
+
+
+}
+
+
+}
+
+
+
+
+
+
+
+
+
 function chooseItem(){
+
 
 
 current = data[
@@ -200,13 +288,16 @@ translation.textContent=current.de;
 
 
 
+// Sprache abspielen
+
 function speak(text,rate){
 
 
 return new Promise(resolve=>{
 
 
-let utterance = new SpeechSynthesisUtterance(text);
+const utterance =
+new SpeechSynthesisUtterance(text);
 
 
 
@@ -250,7 +341,6 @@ speechSynthesis.speak(utterance);
 
 
 
-
 function pause(time=700){
 
 
@@ -276,11 +366,15 @@ setTimeout(resolve,time);
 async function speakText(){
 
 
-if(!current || !playing)return;
+if(!current || !playing){
+
+return;
+
+}
 
 
 
-const speed = {
+const speed={
 
 slow:0.55,
 
@@ -372,13 +466,21 @@ await speak(current.es,speed.native);
 
 
 
+
+
+// Pause vor nächstem Satz
+
 if(playing){
+
 
 restartTimeout=setTimeout(()=>{
 
+
 playNext();
 
-},1200);
+
+},1000);
+
 
 }
 
@@ -396,7 +498,11 @@ playNext();
 function playNext(){
 
 
-if(!playing)return;
+if(!playing){
+
+return;
+
+}
 
 
 
@@ -437,6 +543,10 @@ radio.classList.add("playing");
 
 
 
+startBackgroundSound();
+
+
+
 playNext();
 
 
@@ -474,6 +584,10 @@ radio.classList.remove("talking");
 speechSynthesis.cancel();
 
 
+
+stopBackgroundSound();
+
+
 }
 
 
@@ -483,10 +597,6 @@ speechSynthesis.cancel();
 
 
 
-
-
-
-// Play Button
 
 playButton.onclick=()=>{
 
@@ -547,6 +657,9 @@ updateChannel();
 
 
 
+
+
+
 prevButton.onclick=()=>{
 
 changeChannel(-1);
@@ -568,10 +681,6 @@ changeChannel(1);
 
 
 
-
-
-
-// Level Anzeige
 
 const speeds={
 
@@ -598,8 +707,6 @@ const speeds={
 
 
 
-// Level ändern
-
 level.oninput=()=>{
 
 
@@ -607,19 +714,19 @@ speedValue.textContent=speeds[level.value];
 
 
 
-// laufende Stimme stoppen
-
 speechSynthesis.cancel();
 
 
+
 clearTimeout(restartTimeout);
+
 
 
 radio.classList.remove("talking");
 
 
 
-// aktuelle Phrase neu starten
+// gleiche Phrase mit neuem Level
 
 if(playing && current){
 
@@ -645,8 +752,6 @@ speakText();
 
 
 
-
-// Start
 
 speedValue.textContent=speeds[level.value];
 

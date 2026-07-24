@@ -9,17 +9,15 @@ box-sizing:border-box;
 
 
 
-body{
+html,body{
 
 margin:0;
 
-min-height:100vh;
+width:100%;
 
-display:flex;
+height:100%;
 
-justify-content:center;
-
-align-items:center;
+overflow:hidden;
 
 font-family:
 Inter,
@@ -29,7 +27,18 @@ sans-serif;
 
 color:white;
 
-overflow:hidden;
+}
+
+
+
+
+body{
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
 
 
 background:
@@ -40,7 +49,9 @@ circle at top,
 #020617 75%
 );
 
+
 }
+
 
 
 
@@ -65,15 +76,19 @@ filter:blur(180px);
 
 
 
-
-
 .container{
 
 width:min(92vw,430px);
 
+height:100vh;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
 }
-
-
 
 
 
@@ -84,13 +99,14 @@ width:min(92vw,430px);
 width:100%;
 
 
-min-height:650px;
+height:min(95vh,720px);
 
 
-padding:35px 28px;
+padding:28px 24px;
 
 
 border-radius:42px;
+
 
 
 background:
@@ -130,18 +146,20 @@ align-items:center;
 
 
 
-gap:18px;
+gap:14px;
 
 
 position:relative;
+
+
+overflow:hidden;
 
 }
 
 
 
 
-
-/* tuning animation */
+/* tuning */
 
 .tuning .display{
 
@@ -172,6 +190,7 @@ filter:blur(6px);
 }
 
 
+
 100%{
 
 opacity:1;
@@ -188,6 +207,8 @@ filter:blur(0);
 
 
 
+
+
 /* speaker */
 
 
@@ -197,17 +218,17 @@ filter:blur(0);
 position:absolute;
 
 
-top:25px;
+top:22px;
 
 
-left:25px;
+left:22px;
 
 
 
-width:75px;
+width:70px;
 
 
-height:75px;
+height:70px;
 
 
 
@@ -238,7 +259,6 @@ inset 0 0 20px black;
 
 
 
-
 .speaker:after{
 
 
@@ -248,7 +268,7 @@ content:"";
 position:absolute;
 
 
-inset:15px;
+inset:14px;
 
 
 
@@ -278,7 +298,6 @@ transparent 5px
 
 
 
-
 .talking .speaker{
 
 animation:
@@ -286,7 +305,6 @@ animation:
 speakerPulse 1s infinite;
 
 }
-
 
 
 
@@ -299,8 +317,9 @@ transform:scale(1.05);
 
 }
 
-
 }
+
+
 
 
 
@@ -315,15 +334,16 @@ transform:scale(1.05);
 
 text-align:center;
 
-}
+margin-top:5px;
 
+}
 
 
 
 .live{
 
 
-font-size:12px;
+font-size:11px;
 
 
 letter-spacing:.3em;
@@ -332,7 +352,7 @@ letter-spacing:.3em;
 color:#22c55e;
 
 
-margin-bottom:12px;
+margin-bottom:8px;
 
 }
 
@@ -342,7 +362,7 @@ margin-bottom:12px;
 .logo{
 
 
-font-size:15px;
+font-size:14px;
 
 
 letter-spacing:.35em;
@@ -354,6 +374,7 @@ color:#94a3b8;
 }
 
 
+
 .logo span{
 
 color:var(--channel-color);
@@ -362,19 +383,16 @@ color:var(--channel-color);
 
 
 
-
-
-
 .frequency{
 
 
-margin-top:15px;
+margin-top:12px;
 
 
 display:inline-block;
 
 
-padding:8px 25px;
+padding:7px 22px;
 
 
 border-radius:10px;
@@ -388,7 +406,7 @@ background:#020617;
 font-family:monospace;
 
 
-font-size:18px;
+font-size:17px;
 
 
 color:var(--channel-color);
@@ -404,16 +422,13 @@ inset 0 0 15px rgba(56,189,248,.3);
 
 
 
-
-
-
 .channel{
 
 
-margin-top:15px;
+margin-top:12px;
 
 
-font-size:23px;
+font-size:22px;
 
 
 font-weight:800;
@@ -424,9 +439,8 @@ letter-spacing:.15em;
 
 color:var(--channel-color);
 
+
 }
-
-
 
 
 
@@ -434,10 +448,10 @@ color:var(--channel-color);
 .description{
 
 
-margin-top:8px;
+margin-top:6px;
 
 
-font-size:11px;
+font-size:10px;
 
 
 letter-spacing:.25em;
@@ -445,7 +459,9 @@ letter-spacing:.25em;
 
 color:#94a3b8;
 
+
 }
+
 
 
 
@@ -463,9 +479,11 @@ color:#94a3b8;
 width:100%;
 
 
-height:280px;
+height:240px;
 
-padding:30px;
+
+padding:25px;
+
 
 border-radius:20px;
 
@@ -483,6 +501,7 @@ linear-gradient(
 #111827
 
 );
+
 
 
 
@@ -517,16 +536,13 @@ overflow:hidden;
 
 
 
-
-
-
 .phrase{
 
 
 width:100%;
 
 
-font-size:30px;
+font-size:28px;
 
 
 font-weight:750;
@@ -535,10 +551,11 @@ font-weight:750;
 line-height:1.25;
 
 
-max-height:120px;
+max-height:110px;
 
 
 overflow:hidden;
+
 
 
 display:flex;
@@ -554,15 +571,13 @@ align-items:center;
 
 
 
-
-
 .translation{
 
 
-margin-top:15px;
+margin-top:12px;
 
 
-font-size:16px;
+font-size:15px;
 
 
 color:#94a3b8;
@@ -583,7 +598,7 @@ color:#94a3b8;
 .wave{
 
 
-height:55px;
+height:45px;
 
 
 display:flex;
@@ -602,15 +617,13 @@ gap:8px;
 
 
 
-
-
 .bar{
 
 
 width:7px;
 
 
-height:20px;
+height:18px;
 
 
 border-radius:10px;
@@ -618,8 +631,8 @@ border-radius:10px;
 
 background:var(--channel-color);
 
-}
 
+}
 
 
 
@@ -632,7 +645,6 @@ sound .8s infinite ease-in-out;
 
 
 }
-
 
 
 
@@ -671,19 +683,21 @@ animation-delay:.4s;
 
 0%,100%{
 
-height:20px;
+height:18px;
 
 }
 
 
 50%{
 
-height:60px;
+height:55px;
 
 }
 
 
 }
+
+
 
 
 
@@ -714,13 +728,14 @@ gap:18px;
 
 
 
+
 .channel-button{
 
 
-width:48px;
+width:46px;
 
 
-height:48px;
+height:46px;
 
 
 border-radius:50%;
@@ -740,13 +755,10 @@ background:#111827;
 color:white;
 
 
-font-size:22px;
+font-size:20px;
 
 
 cursor:pointer;
-
-
-transition:.2s;
 
 
 }
@@ -759,12 +771,7 @@ transition:.2s;
 
 background:var(--channel-color);
 
-
-transform:scale(1.1);
-
-
 }
-
 
 
 
@@ -773,10 +780,10 @@ transform:scale(1.1);
 .play-button{
 
 
-width:95px;
+width:85px;
 
 
-height:95px;
+height:85px;
 
 
 
@@ -792,7 +799,7 @@ cursor:pointer;
 
 
 
-font-size:36px;
+font-size:32px;
 
 
 
@@ -818,26 +825,11 @@ var(--channel-color),
 box-shadow:
 
 
-0 20px 50px rgba(37,99,blue,.5);
+0 20px 50px rgba(37,99,235,.5);
 
-
-
-transition:.2s;
 
 
 }
-
-
-
-
-.play-button:hover{
-
-
-transform:scale(1.08);
-
-
-}
-
 
 
 
@@ -846,6 +838,7 @@ transform:scale(1.08);
 
 
 animation:pulse 1.5s infinite;
+
 
 }
 
@@ -874,7 +867,7 @@ box-shadow:
 
 
 
-/* speed */
+/* level */
 
 
 .speed-box{
@@ -890,7 +883,6 @@ text-align:center;
 
 
 }
-
 
 
 
@@ -913,7 +905,6 @@ font-weight:600;
 
 
 
-
 input[type=range]{
 
 
@@ -930,12 +921,40 @@ accent-color:var(--channel-color);
 
 
 
+
+
+/* kleine Smartphones */
+
+
 @media(max-height:700px){
+
 
 
 .radio{
 
-min-height:590px;
+
+height:96vh;
+
+
+padding:18px 18px;
+
+
+gap:10px;
+
+
+}
+
+
+
+
+.speaker{
+
+
+width:55px;
+
+
+height:55px;
+
 
 }
 
@@ -943,7 +962,12 @@ min-height:590px;
 
 .display{
 
-height:160px;
+
+height:170px;
+
+
+padding:15px;
+
 
 }
 
@@ -951,7 +975,108 @@ height:160px;
 
 .phrase{
 
-font-size:25px;
+
+font-size:23px;
+
+
+}
+
+
+
+.translation{
+
+
+font-size:14px;
+
+
+}
+
+
+
+.wave{
+
+
+height:30px;
+
+
+}
+
+
+
+.play-button{
+
+
+width:70px;
+
+
+height:70px;
+
+
+font-size:26px;
+
+
+}
+
+
+
+.channel-button{
+
+
+width:38px;
+
+
+height:38px;
+
+
+font-size:17px;
+
+
+}
+
+
+}
+
+
+
+
+/* sehr kleine Geräte */
+
+
+@media(max-height:600px){
+
+
+.radio{
+
+
+height:98vh;
+
+
+border-radius:30px;
+
+
+}
+
+
+
+.display{
+
+height:140px;
+
+}
+
+
+
+.phrase{
+
+font-size:20px;
+
+}
+
+
+
+.logo{
+
+font-size:12px;
 
 }
 
